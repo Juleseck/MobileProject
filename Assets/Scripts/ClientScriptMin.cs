@@ -8,7 +8,7 @@ namespace Assets.Scripts
 {
     public class ClientScriptMin : MonoBehaviour
     {
-        private const string HostIp = "145.93.137.84";
+        private const string HostIp = "145.93.137.197";
         private const string PortField = "25000";
 
         private int _connectionId;
