@@ -97,7 +97,9 @@ public class Accelerometer : MonoBehaviour
         cubeZ.transform.position = new Vector3(0, 0, 0);
     }
 
-
+    /**
+     * 
+     **/
     private Enum_Trigger GestureDetection()
     {
         bool klappen = true;
