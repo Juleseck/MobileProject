@@ -86,20 +86,13 @@ public class Accelerometer : MonoBehaviour
         }
 
         CleanQueue();
-        //Debug.Log(Input.acceleration);
-        //Debug.Log(Input.acceleration.magnitude);
     }
 
-    public void Reset()
-    {
-        cubeX.transform.position = new Vector3(0,0,0);
-        cubeY.transform.position = new Vector3(0, 0, 0);
-        cubeZ.transform.position = new Vector3(0, 0, 0);
-    }
-
-    /**
-     * 
-     **/
+    
+    /// <summary>
+    /// Detection of current gesture. Checks if the user is jumping, clapping or doing the wave.
+    /// </summary>
+    /// <returns>Enum_Trigger of the current gesture. enum Null is returned if nothing was detected.</returns>
     private Enum_Trigger GestureDetection()
     {
         bool klappen = true;
@@ -149,7 +142,6 @@ public class Accelerometer : MonoBehaviour
                     jump = true;
             }
         }
-        //Debug.Log("Waves: " + _checkedWaveValues.Count + " - jumps: " + _checkedJumpValues.Count);
         if (klappen && _positivePeaks.Count > PeakCountMax && _negativePeaks.Count > PeakCountMin)
         {
             return Enum_Trigger.Klappen;
@@ -166,8 +158,10 @@ public class Accelerometer : MonoBehaviour
 
         return Enum_Trigger.Null;
     }
-
-    //clear triggers that have been in the list for over 1 second.
+    
+    /// <summary>
+    /// clear triggers that have been in the list for over 1 second.
+    /// </summary>
     public void CleanQueue()
     {
         //current time - 1 second buffer zone
@@ -188,7 +182,11 @@ public class Accelerometer : MonoBehaviour
         }
     }
 
-    //when trigger is removed subtract 1 from counter.
+    // when trigger is removed subtract 1 from counter.
+    /// <summary>
+    /// when trigger is removed subtract 1 from counter.
+    /// </summary>
+    /// <param name="trigger">the trigger which has been removed</param>
     public void CountdownTrigger(Enum_Trigger trigger)
     {
         switch (trigger)
@@ -204,8 +202,11 @@ public class Accelerometer : MonoBehaviour
                 break;
         }
     }
-
-    //add trigger to queue and add 1 to triggerCounter.
+    
+    /// <summary>
+    /// add trigger to queue and add 1 to triggerCounter. 
+    /// </summary>
+    /// <param name="trigger"> the detected trigger </param>
     public void ProcessTrigger(Enum_Trigger trigger)
     {
         var correctTrigger = checkKlappenWave(trigger);
@@ -217,11 +218,9 @@ public class Accelerometer : MonoBehaviour
         {
             case Enum_Trigger.Klappen:
                 TriggerCounterMobile.IncreaseKlappen();
-                //Debug.Log("Klappen");
                 break;
             case Enum_Trigger.Springen:
                 TriggerCounterMobile.IncreaseSpringen();
-                //Debug.Log("Springen");
                 break;
             case Enum_Trigger.Wave:
                 TriggerCounterMobile.IncreaseWave();       
@@ -229,6 +228,11 @@ public class Accelerometer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks which of the counted gestures is the highest.
+    /// </summary>
+    /// <param name="trigger"></param>
+    /// <returns> the Enum_Trigger which has the highest counter</returns>
     private Enum_Trigger checkKlappenWave(Enum_Trigger trigger)
     {
         var result = trigger;

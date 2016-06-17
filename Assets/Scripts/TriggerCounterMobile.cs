@@ -10,19 +10,16 @@
 
         public static void IncreaseKlappen()
         {
-            //Klappen = (Klappen == 0) ? 1 : Klappen + 1;
             Klappen++;
         }
 
         public static void IncreaseSpringen()
         {
-            //Springen = (Springen == 0) ? 1 : Springen + 1;
             Springen++;
         }
 
         public static void IncreaseWave()
         {
-            //Wave = (Wave == 0) ? 1 : Wave + 1;
             Wave++;
         }
 

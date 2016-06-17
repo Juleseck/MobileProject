@@ -41,6 +41,10 @@ public class VisualProcessor : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    /// <summary>
+    /// Sets the current active theme
+    /// </summary>
+    /// <param name="visual"> the theme which is currently active</param>
     public void Display(Visuals_Enum visual)
     {
         
@@ -60,6 +64,10 @@ public class VisualProcessor : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// showing the images in a loop to display an animation on the screen 
+    /// </summary>
+    /// <param name="theme"> the current theme </param>
     public void loopDisplay(VisualsDict theme)
     {
         if (_currTime >= 0.05)
@@ -85,13 +93,6 @@ public class VisualProcessor : MonoBehaviour {
                 _i++;
             }
             _currTime = 0;
-            //Debug.Log(_i);
         }
-    }
-
-    IEnumerator wait(Texture t)
-    {
-        yield return new WaitForSeconds(1f);
-        ImageCanvas.texture = t;
     }
 }
